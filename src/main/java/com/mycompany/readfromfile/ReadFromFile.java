@@ -25,7 +25,7 @@ public class ReadFromFile {
     }
     
     // Validating if the first name in the customers.txt only contains letters
-    public boolean isValidFirstName(String name){
+    public static boolean isValidFirstName(String name){
         char[] chars = name.toCharArray();
         
         for (char c : chars){
@@ -36,20 +36,56 @@ public class ReadFromFile {
         
         return true;
     }
-}
-
-public class Customer {
-    String firstName;
-    String lastName;
-    float totalPurchase;
-    int customerClass;
-    int lastPurchaseYear;
     
-    public Customer(String name, String surname, float purchase, int customClass, int year){
-        firstName = name;
-        lastName = surname;
-        totalPurchase = purchase;
-        customerClass = customClass;
-        lastPurchaseYear = year;
+    // Validating if the last name in the customers.txt only contains letters
+    public static boolean isValidLastName(String lName){
+        char[] chars = lName.toCharArray();
+        
+        for (char c : chars){
+            if(!Character.isLetter(c)){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+     // Validating if the total purchase in the customers.txt is a valid purchase figure
+    public static boolean isValidTotalPurchase(String purchase){
+        char[] chars = purchase.toCharArray();
+        int decimalCounter = 0;
+        
+        for (char c : chars){
+            if(!Character.isDigit(c) && !(c == '.')){
+                return false;
+            }
+            else if (c == '.'){
+                decimalCounter += 1;
+                    if (decimalCounter > 1){
+                        return false;
+                    }
+                }
+        }
+        
+        return true;
+    }
+    
+    // Validating if the customer class is either 1, 2 or 3, otherwise returning false
+    public static boolean isValidCustomerClass(String customClass){
+        int customClassNum = Integer.parseInt(customClass);
+        
+        return switch (customClassNum) {
+            case 1 -> true;
+            case 2 -> true;
+            case 3 -> true;
+            default -> false;
+        };
+    }
+    
+    // Validating if the purchase year is a valid year
+    public static boolean isValidPurchaseYear(String year){
+        int purchaseYear = Integer.parseInt(year);
+        
+        return purchaseYear < 2026;
     }
 }

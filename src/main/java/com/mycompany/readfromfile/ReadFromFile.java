@@ -21,9 +21,20 @@ public class ReadFromFile {
         }
         catch (IOException e){
             System.out.println("Error reading file");
-        }
-       
+        }   
+    }
+    
+    // Validating if the first name in the customers.txt only contains letters
+    public boolean isValidFirstName(String name){
+        char[] chars = name.toCharArray();
         
+        for (char c : chars){
+            if(!Character.isLetter(c)){
+                return false;
+            }
+        }
+        
+        return true;
     }
 }
 

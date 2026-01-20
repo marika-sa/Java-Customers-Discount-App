@@ -26,3 +26,19 @@ public class ReadFromFile {
         
     }
 }
+
+public class Customer {
+    String firstName;
+    String lastName;
+    float totalPurchase;
+    int customerClass;
+    int lastPurchaseYear;
+    
+    public Customer(String name, String surname, float purchase, int customClass, int year){
+        firstName = name;
+        lastName = surname;
+        totalPurchase = purchase;
+        customerClass = customClass;
+        lastPurchaseYear = year;
+    }
+}

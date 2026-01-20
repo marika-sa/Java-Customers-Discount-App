@@ -36,6 +36,19 @@ public class ReadFromFile {
         
         return true;
     }
+    
+    // Validating if the last name in the customers.txt only contains letters
+    public boolean isValidLastName(String lName){
+        char[] chars = lName.toCharArray();
+        
+        for (char c : chars){
+            if(!Character.isLetter(c)){
+                return false;
+            }
+        }
+        
+        return true;
+    }
 }
 
 public class Customer {

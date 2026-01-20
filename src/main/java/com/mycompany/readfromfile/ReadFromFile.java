@@ -36,7 +36,8 @@ public class ReadFromFile {
                     
                     if (isValid){
                         Customer customer = new Customer(fName, lName, line2, line3, line4);
-                        System.out.println(fName + " " + lName + " was successfully added!");
+                        double finalPurchasePrice = discountCalculation(line3, line4,line2);
+                        System.out.println(fName + " " + lName + "\nFinal Discount: " + finalPurchasePrice + "\n");
                     }
                     else {
                         System.out.println("NOT ADDED: " + fName + " " + lName);
@@ -112,4 +113,49 @@ public class ReadFromFile {
         
         return purchaseYear < 2026;
     }
+
+    public static double discountCalculation(String customClass, String year, String purchase){
+        int discountClass = Integer.parseInt(customClass);
+        int purchaseYear = Integer.parseInt(year);
+        double totalPurchase = Double.parseDouble(purchase);
+        double x = 0;
+        
+        switch (discountClass) {
+            case 1 -> {
+                if (purchaseYear == 2026){
+                    x = totalPurchase * 0.7;
+                }
+                else if (purchaseYear >= 2021){
+                    x = totalPurchase * 0.8;
+                }
+                else {
+                    x = totalPurchase * 0.9;
+                }
+            }
+            case 2 -> {
+                if (purchaseYear == 2026){
+                    x = totalPurchase * 0.85;
+                }
+                else if (purchaseYear >= 2021){
+                    x = totalPurchase * 0.88;
+                }
+                else {
+                    x = totalPurchase * 0.95;
+                }
+            }
+            case 3 -> {
+                if (purchaseYear == 2026){
+                    x = totalPurchase * 0.97;
+                }
+                else {
+                    x = totalPurchase;
+                }
+            }
+            default -> {
+            }
+        }
+        
+        return x;
+    }
 }
+

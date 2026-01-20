@@ -11,11 +11,11 @@ package com.mycompany.readfromfile;
 public class Customer {
     String firstName;
     String lastName;
-    double totalPurchase;
-    int customerClass;
-    int lastPurchaseYear;
+    String totalPurchase;
+    String customerClass;
+    String lastPurchaseYear;
     
-    public Customer(String name, String surname, double purchase, int customClass, int year){
+    public Customer(String name, String surname, String purchase, String customClass, String year){
         firstName = name;
         lastName = surname;
         totalPurchase = purchase;

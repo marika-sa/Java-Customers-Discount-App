@@ -4,7 +4,6 @@
 package com.mycompany.readfromfile;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 
 /**
@@ -15,13 +14,38 @@ public class ReadFromFile {
 
     public static void main(String[] args) {
         try (BufferedReader br = new BufferedReader(new FileReader("customers.txt"))) {
-        String line;
-        while ((line = br.readLine()) != null)
-                System.out.println(line);
+            String line1;
+            while ((line1 = br.readLine()) != null){
+                    String line2 = br.readLine();
+                    String line3 = br.readLine();
+                    String line4 = br.readLine();
+
+                    boolean isValid = true;
+
+                    String[] line1Array = line1.split(" ");
+                    String fName = line1Array[0];
+                    String lName = line1Array[1];
+                    isValidFirstName(fName);
+                    isValidLastName(lName);
+
+                    isValidTotalPurchase(line2);
+
+                    isValidCustomerClass(line3);
+
+                    isValidPurchaseYear(line4);
+                    
+                    if (isValid){
+                        Customer customer = new Customer(fName, lName, line2, line3, line4);
+                        System.out.println(fName + " " + lName + " was successfully added!");
+                    }
+                    else {
+                        System.out.println("NOT ADDED: " + fName + " " + lName);
+                    }
+
+            }
+        } catch (Exception e){
+            System.out.println("Not a valid input");
         }
-        catch (IOException e){
-            System.out.println("Error reading file");
-        }   
     }
     
     // Validating if the first name in the customers.txt only contains letters
